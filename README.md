@@ -62,13 +62,10 @@ This repo includes a workflow at `.github/workflows/terraform-cicd.yml`.
 
 ### Required GitHub Secrets
 
-Use one of these authentication methods:
+Set both access-key secrets:
 
-1. Access keys:
-	 - `AWS_ACCESS_KEY_ID`
-	 - `AWS_SECRET_ACCESS_KEY`
-2. OIDC role:
-	 - `AWS_ROLE_TO_ASSUME`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
 
 ### Optional Inputs
 
