@@ -247,3 +247,23 @@ resource "aws_lb_target_group_attachment" "app" {
   target_id        = aws_instance.app[count.index].id
   port             = var.app_port
 }
+
+resource "aws_s3_bucket" "project" {
+  count  = var.create_s3_bucket ? 1 : 0
+  bucket = var.s3_bucket_name
+
+  tags = merge(local.common_tags, {
+    Name = "${var.project_name}-${var.environment}-bucket"
+  })
+}
+
+resource "aws_s3_bucket_public_access_block" "project" {
+  count = var.create_s3_bucket ? 1 : 0
+
+  bucket = aws_s3_bucket.project[0].id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}

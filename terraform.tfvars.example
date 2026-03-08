@@ -3,3 +3,7 @@ environment   = "dev"
 project_name  = "lb-project"
 instance_type = "t3.micro"
 ssh_cidr      = "0.0.0.0/0"
+
+# Optional S3 bucket
+create_s3_bucket = false
+s3_bucket_name   = ""

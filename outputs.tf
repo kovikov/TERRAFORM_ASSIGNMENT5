@@ -22,3 +22,13 @@ output "private_subnet_ids" {
   description = "Private subnet IDs"
   value       = aws_subnet.private[*].id
 }
+
+output "s3_bucket_name" {
+  description = "Optional S3 bucket name (null when disabled)"
+  value       = try(aws_s3_bucket.project[0].id, null)
+}
+
+output "s3_bucket_arn" {
+  description = "Optional S3 bucket ARN (null when disabled)"
+  value       = try(aws_s3_bucket.project[0].arn, null)
+}

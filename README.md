@@ -8,6 +8,7 @@ This project provisions:
 - Security groups for ALB and EC2
 - 2 EC2 instances running a Flask app
 - Application Load Balancer + target group + listener + attachments
+- Optional S3 bucket (disabled by default)
 
 ## Quick Start (PowerShell)
 
@@ -33,6 +34,17 @@ After apply, Terraform prints:
 - `alb_dns_name`
 - `ec2_public_ips`
 - `vpc_id`
+- `s3_bucket_name` (null if disabled)
+- `s3_bucket_arn` (null if disabled)
+
+## Optional S3 Bucket
+
+Enable in `terraform.tfvars`:
+
+```hcl
+create_s3_bucket = true
+s3_bucket_name   = "your-globally-unique-bucket-name"
+```
 
 ## Cleanup
 

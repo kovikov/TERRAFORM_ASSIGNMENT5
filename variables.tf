@@ -56,3 +56,20 @@ variable "app_port" {
   type        = number
   default     = 5000
 }
+
+variable "create_s3_bucket" {
+  description = "Whether to create an optional S3 bucket for the project"
+  type        = bool
+  default     = false
+}
+
+variable "s3_bucket_name" {
+  description = "Globally unique S3 bucket name (required when create_s3_bucket=true)"
+  type        = string
+  default     = ""
+
+  validation {
+    condition     = var.create_s3_bucket == false || length(trim(var.s3_bucket_name)) > 0
+    error_message = "Set s3_bucket_name when create_s3_bucket is true."
+  }
+}
