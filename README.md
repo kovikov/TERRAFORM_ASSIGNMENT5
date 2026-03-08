@@ -39,4 +39,38 @@ After apply, Terraform prints:
 ```powershell
 terraform destroy
 ```
-# TERRAFORM_ASSIGNMENT5
+
+## CI/CD (GitHub Actions)
+
+This repo includes a workflow at `.github/workflows/terraform-cicd.yml`.
+
+### CI
+
+- Runs on pull requests and pushes to `main`
+- Executes:
+	- `terraform fmt -check -recursive`
+	- `terraform init -backend=false`
+	- `terraform validate`
+
+### CD (Manual)
+
+- Trigger from GitHub: `Actions` -> `Terraform CI/CD` -> `Run workflow`
+- Choose action:
+	- `plan`
+	- `apply`
+	- `destroy`
+
+### Required GitHub Secrets
+
+Use one of these authentication methods:
+
+1. Access keys:
+	 - `AWS_ACCESS_KEY_ID`
+	 - `AWS_SECRET_ACCESS_KEY`
+2. OIDC role:
+	 - `AWS_ROLE_TO_ASSUME`
+
+### Optional Inputs
+
+- `aws_region` (default: `eu-west-2`)
+- `var_file` (default: `terraform.tfvars`)
